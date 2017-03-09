@@ -18,6 +18,23 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Chain.cpp" />
+    <ClCompile Include="Graph.cpp" />
+    <ClCompile Include="Edge.cpp" />
+    <ClCompile Include="ReducedPressurePass.cpp" />
+    <ClCompile Include="Vertex.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\Chain.h" />
+    <ClInclude Include="..\include\Graph.h" />
+    <ClInclude Include="..\include\Edge.h" />
+    <ClInclude Include="..\include\ReducedPressurePass.h" />
+    <ClInclude Include="..\include\Vertex.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\LLVM IR\MRIS.bc" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{19AE3B3D-BB41-4E72-BDA8-E6E567C1FA17}</ProjectGuid>
     <RootNamespace>RegisterPressure</RootNamespace>
@@ -25,7 +42,7 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
@@ -73,8 +90,22 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
+      <AdditionalIncludeDirectories>E:\Development\LLVM\RegisterPressure\include;E:\Development\LLVM\llvm-3.9.0.bin\include;E:\Development\LLVM\llvm-3.9.0.src\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalUsingDirectories>E:\Development\LLVM\llvm-3.9.0.bin\Release\lib;E:\Development\LLVM\llvm-3.9.0.bin\Release\bin;%(AdditionalUsingDirectories)</AdditionalUsingDirectories>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_HAS_EXCEPTIONS=0;GTEST_HAS_RTTI=0;_CRT_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;_CRT_NONSTDC_NO_WARNINGS;_SCL_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;UNICODE;_UNICODE;__STDC_CONSTANT_MACROS;__STDC_FORMAT_MACROS;__STDC_LIMIT_MACROS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>E:\Development\LLVM\llvm-3.9.0.bin\lib;E:\Development\LLVM\llvm-3.9.0.src\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMAArch64CodeGen.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMAArch64AsmPrinter.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMAArch64AsmParser.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMAArch64Desc.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMAArch64Info.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMAArch64Disassembler.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMAMDGPUCodeGen.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMAMDGPUAsmPrinter.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMAMDGPUAsmParser.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMAMDGPUDesc.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMAMDGPUInfo.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMAMDGPUDisassembler.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMARMCodeGen.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMARMAsmPrinter.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMARMAsmParser.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMARMDesc.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMARMInfo.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMARMDisassembler.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMBPFCodeGen.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMBPFAsmPrinter.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMBPFDesc.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMBPFInfo.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMHexagonCodeGen.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMHexagonAsmParser.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMHexagonDesc.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMHexagonInfo.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMHexagonDisassembler.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMMipsCodeGen.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMMipsAsmPrinter.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMMipsAsmParser.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMMipsDesc.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMMipsInfo.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMMipsDisassembler.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMMSP430CodeGen.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMMSP430AsmPrinter.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMMSP430Desc.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMMSP430Info.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMNVPTXCodeGen.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMNVPTXAsmPrinter.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMNVPTXDesc.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMNVPTXInfo.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMPowerPCCodeGen.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMPowerPCAsmPrinter.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMPowerPCAsmParser.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMPowerPCDesc.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMPowerPCInfo.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMPowerPCDisassembler.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMSparcCodeGen.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMSparcAsmPrinter.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMSparcAsmParser.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMSparcDesc.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMSparcInfo.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMSparcDisassembler.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMSystemZCodeGen.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMSystemZAsmPrinter.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMSystemZAsmParser.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMSystemZDesc.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMSystemZInfo.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMSystemZDisassembler.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMX86CodeGen.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMX86AsmPrinter.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMX86AsmParser.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMX86Desc.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMX86Info.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMX86Disassembler.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMXCoreCodeGen.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMXCoreAsmPrinter.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMXCoreDesc.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMXCoreInfo.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMXCoreDisassembler.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMAnalysis.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMBitWriter.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMCodeGen.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMCore.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMipo.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMIRReader.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMInstCombine.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMInstrumentation.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMMC.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMObjCARCOpts.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMScalarOpts.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMSupport.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMTarget.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMTransformUtils.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMVectorize.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMPasses.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMGlobalISel.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMAArch64Utils.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMAMDGPUUtils.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMX86Utils.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMAsmPrinter.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMDebugInfoCodeView.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMSelectionDAG.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMMCDisassembler.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMAsmParser.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMObject.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMMCParser.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMBitReader.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMLinker.lib;E:\Development\LLVM\llvm-3.9.0.bin\Debug\lib\LLVMProfileData.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <Lib>
+      <AdditionalLibraryDirectories>E:\Development\LLVM\llvm-3.9.0.bin\lib;E:\Development\LLVM\llvm-3.9.0.src\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -109,8 +140,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

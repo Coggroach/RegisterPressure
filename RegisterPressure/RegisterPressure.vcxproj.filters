@@ -13,5 +13,50 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\DataDependence">
+      <UniqueIdentifier>{6a324642-e746-44e9-afd1-1dea60f06cdf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\DataDependence">
+      <UniqueIdentifier>{3c96204b-376c-4b82-a1fe-3eb619ae20a9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ReducedPressurePass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Chain.cpp">
+      <Filter>Source Files\DataDependence</Filter>
+    </ClCompile>
+    <ClCompile Include="Edge.cpp">
+      <Filter>Source Files\DataDependence</Filter>
+    </ClCompile>
+    <ClCompile Include="Vertex.cpp">
+      <Filter>Source Files\DataDependence</Filter>
+    </ClCompile>
+    <ClCompile Include="Graph.cpp">
+      <Filter>Source Files\DataDependence</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\ReducedPressurePass.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Chain.h">
+      <Filter>Header Files\DataDependence</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Edge.h">
+      <Filter>Header Files\DataDependence</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Vertex.h">
+      <Filter>Header Files\DataDependence</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Graph.h">
+      <Filter>Header Files\DataDependence</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\LLVM IR\MRIS.bc">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
