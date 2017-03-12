@@ -8,9 +8,13 @@ namespace DataDependence
 	Chain::Chain()
 	{
 		this->Edges = std::vector<Edge*>();
+		this->Marked = false;
 	}
 
-	Chain::~Chain()	{ }
+	Chain::~Chain()
+	{ 
+		this->Edges.clear();
+	}
 
 	bool Chain::IsValidChain()
 	{
@@ -26,5 +30,12 @@ namespace DataDependence
 	bool Chain::ContainsVertex(Vertex* v)
 	{
 		return std::any_of(this->Edges.begin(), this->Edges.end(), [v](Edge* e) { return e->Parent == v || e->Child == v; });
+	}
+	int Chain::GetChainLength()
+	{
+		auto total = 0;
+		for (auto e : this->Edges)
+			total += e->Distance;
+		return total;
 	}
 }

@@ -23,6 +23,7 @@
     <ClCompile Include="Graph.cpp" />
     <ClCompile Include="Edge.cpp" />
     <ClCompile Include="ReducedPressurePass.cpp" />
+    <ClCompile Include="Scheduler.cpp" />
     <ClCompile Include="Vertex.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -30,10 +31,15 @@
     <ClInclude Include="..\include\Graph.h" />
     <ClInclude Include="..\include\Edge.h" />
     <ClInclude Include="..\include\ReducedPressurePass.h" />
+    <ClInclude Include="..\include\Scheduler.h" />
     <ClInclude Include="..\include\Vertex.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\LLVM IR\MRIS.bc" />
+    <None Include="..\..\LLVM IR\Mirror.bc" />
+    <None Include="Diamond.bc" />
+    <None Include="Droplets.bc" />
+    <None Include="Parallel.bc" />
+    <None Include="Rombus.bc" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{19AE3B3D-BB41-4E72-BDA8-E6E567C1FA17}</ProjectGuid>

@@ -2,6 +2,7 @@
 #include "Chain.h"
 #include "Edge.h"
 #include "Vertex.h"
+#include "Scheduler.h"
 #include <algorithm>
 
 namespace DataDependence
@@ -13,11 +14,21 @@ namespace DataDependence
 		this->Edges = std::vector<Edge*>();
 		this->Chains = std::vector<Chain*>();
 		this->LineIndex = 0;
+		this->Schedule = new Scheduler(this->Chains);
 	}
 
 	Graph::~Graph()
 	{
-
+		for (auto v : this->Vertices)
+			delete v;
+		this->Vertices.clear();
+		for (auto v : this->Edges)
+			delete v;
+		this->Edges.clear();
+		for (auto v : this->Chains)
+			delete v;
+		this->Chains.clear();
+		delete this->Schedule;
 	}
 
 	Vertex * Graph::FindVertex(std::string n)
@@ -90,10 +101,22 @@ namespace DataDependence
 		}
 	}
 
+	void Graph::UnmarkEdges()
+	{
+		for (auto e : this->Edges)
+			e->Marked = (e->Parent == nullptr);
+	}
+
+	void Graph::UnmarkChains()
+	{
+		for (auto c : this->Chains)
+			c->Marked = false;
+	}
+
 	void Graph::ColourChains(int colours)
 	{
 		auto size = this->Chains.size();
-		auto availableColours = (1L << colours + 1) - 1;
+		auto availableColours = (1L << (colours + 1)) - 1;
 		for (auto i = 0; i < size - 1; i++)
 		{
 			for (auto j = i + 1; j < size; j++)

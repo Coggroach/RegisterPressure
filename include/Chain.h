@@ -4,17 +4,18 @@
 namespace DataDependence
 {
 	class Edge;
-
+	class Vertex;
 	class Chain
 	{
 	public:
 		std::vector<Edge*> Edges;
-		int Colour;
+		bool Marked;
 
 		Chain();
 		~Chain();
 
 		bool IsValidChain();
 		bool ContainsVertex(Vertex*);
+		int GetChainLength();
 	};
 }

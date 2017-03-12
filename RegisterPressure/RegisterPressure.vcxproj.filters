@@ -36,6 +36,9 @@
     <ClCompile Include="Graph.cpp">
       <Filter>Source Files\DataDependence</Filter>
     </ClCompile>
+    <ClCompile Include="Scheduler.cpp">
+      <Filter>Source Files\DataDependence</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\ReducedPressurePass.h">
@@ -53,9 +56,24 @@
     <ClInclude Include="..\include\Graph.h">
       <Filter>Header Files\DataDependence</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\Scheduler.h">
+      <Filter>Header Files\DataDependence</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\LLVM IR\MRIS.bc">
+    <None Include="..\..\LLVM IR\Mirror.bc">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Droplets.bc">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Rombus.bc">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Parallel.bc">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Diamond.bc">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

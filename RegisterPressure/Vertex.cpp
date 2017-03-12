@@ -22,7 +22,12 @@ namespace DataDependence
 		this->Line = l;
 	}
 
-	Vertex::~Vertex() { }
+	Vertex::~Vertex() 
+	{
+		this->Incoming.clear();
+		this->Outgoing.clear();
+		this->Operands.clear();
+	}
 
 	bool Vertex::IsSourceNode()
 	{		
