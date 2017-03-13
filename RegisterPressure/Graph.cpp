@@ -14,7 +14,6 @@ namespace DataDependence
 		this->Edges = std::vector<Edge*>();
 		this->Chains = std::vector<Chain*>();
 		this->LineIndex = 0;
-		this->Schedule = new Scheduler(this->Chains);
 	}
 
 	Graph::~Graph()
@@ -101,6 +100,19 @@ namespace DataDependence
 		}
 	}
 
+	void Graph::LinkVerticesToChains()
+	{
+		for (auto c : this->Chains)
+		{
+			for (auto e : c->Edges)
+			{
+				auto p = e->Parent;
+				if(p != nullptr) p->Chains.push_back(c);
+			}				
+			c->Edges[c->Edges.size() - 1]->Child->Chains.push_back(c);
+		}
+	}
+
 	void Graph::UnmarkEdges()
 	{
 		for (auto e : this->Edges)
@@ -113,26 +125,11 @@ namespace DataDependence
 			c->Marked = false;
 	}
 
-	void Graph::ColourChains(int colours)
+	void Graph::CreateSchedule()
 	{
-		auto size = this->Chains.size();
-		auto availableColours = (1L << (colours + 1)) - 1;
-		for (auto i = 0; i < size - 1; i++)
-		{
-			for (auto j = i + 1; j < size; j++)
-			{
-				DoChainsOverlap(this->Chains[i], this->Chains[j]);
-			}
-		}
-	}
-
-	bool Graph::DoChainsOverlap(Chain* c0, Chain* c1)
-	{
-		for (auto v : c0->Edges)
-		{
-			if (c1->ContainsVertex(v->Parent))
-				return true;
-		}
-		return c1->ContainsVertex(c0->Edges[c0->Edges.size() - 1]->Child);
+		this->Schedule = new Scheduler(this->Vertices, this->Chains);
+		this->UnmarkEdges();
+		this->UnmarkChains();
+		this->Schedule->CreateSchedule();
 	}
 }

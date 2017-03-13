@@ -19,6 +19,7 @@ namespace DataDependence
 		this->Delay = 1;
 		this->Incoming = std::vector<Edge*>();
 		this->Outgoing = std::vector<Edge*>();
+		this->Chains = std::vector<Chain*>();		
 		this->Line = l;
 	}
 
@@ -27,6 +28,7 @@ namespace DataDependence
 		this->Incoming.clear();
 		this->Outgoing.clear();
 		this->Operands.clear();
+		this->Chains.clear();
 	}
 
 	bool Vertex::IsSourceNode()

@@ -37,6 +37,7 @@ bool ReducedPressurePass::processForGraph(BasicBlock & bb)
 	}
 
 	this->Graph->CreateMinimumChains();
+	this->Graph->CreateSchedule();
 	return false;
 }
 

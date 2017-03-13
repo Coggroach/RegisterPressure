@@ -31,6 +31,7 @@ namespace DataDependence
 	{
 		return std::any_of(this->Edges.begin(), this->Edges.end(), [v](Edge* e) { return e->Parent == v || e->Child == v; });
 	}
+
 	int Chain::GetChainLength()
 	{
 		auto total = 0;

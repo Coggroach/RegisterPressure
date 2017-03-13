@@ -4,6 +4,7 @@
 
 namespace DataDependence
 {
+	class Chain;
 	class Edge;
 	class Vertex
 	{
@@ -12,6 +13,7 @@ namespace DataDependence
 		std::vector<std::string> Operands;
 		std::vector<Edge*> Incoming;
 		std::vector<Edge*> Outgoing;
+		std::vector<Chain*> Chains;
 		int Delay;
 		int Line;
 

@@ -21,13 +21,15 @@ namespace DataDependence
 		~Graph();
 
 		Vertex* FindVertex(std::string);
-		bool ContainsVertex(std::string);
-		void AddVertex(std::string, std::vector<std::string>);
 		Vertex* FindSourceNode();
+
+		bool ContainsVertex(std::string);
+		void AddVertex(std::string, std::vector<std::string>);		
+
 		void CreateMinimumChains();
+		void LinkVerticesToChains();
 		void UnmarkEdges();
 		void UnmarkChains();
-		void ColourChains(int);
-		bool DoChainsOverlap(Chain*, Chain*);
+		void CreateSchedule();
 	};
 }
