@@ -16,7 +16,6 @@ namespace DataDependence
 
 	Edge::~Edge()
 	{
-		delete this->Parent;
-		delete this->Child;
+		
 	}
 }

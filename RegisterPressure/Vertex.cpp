@@ -25,10 +25,7 @@ namespace DataDependence
 
 	Vertex::~Vertex() 
 	{
-		this->Incoming.clear();
-		this->Outgoing.clear();
-		this->Operands.clear();
-		this->Chains.clear();
+
 	}
 
 	bool Vertex::IsSourceNode()

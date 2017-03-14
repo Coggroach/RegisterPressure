@@ -33,7 +33,7 @@
     <ClInclude Include="..\include\Vertex.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\LLVM IR\Mirror.bc" />
+    <None Include="..\Resources\Mirror.bc" />
     <None Include="Diamond.bc" />
     <None Include="Droplets.bc" />
     <None Include="Parallel.bc" />
@@ -95,9 +95,9 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>false</SDLCheck>
-      <AdditionalIncludeDirectories>E:\Development\LLVM\RegisterPressure\include;E:\Development\LLVM\llvm-3.9.0.bin\include;E:\Development\LLVM\llvm-3.9.0.src\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalUsingDirectories>E:\Development\LLVM\llvm-3.9.0.bin\Release\lib;E:\Development\LLVM\llvm-3.9.0.bin\Release\bin;%(AdditionalUsingDirectories)</AdditionalUsingDirectories>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_HAS_EXCEPTIONS=0;GTEST_HAS_RTTI=0;_CRT_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;_CRT_NONSTDC_NO_WARNINGS;_SCL_SECURE_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;UNICODE;_UNICODE;__STDC_CONSTANT_MACROS;__STDC_FORMAT_MACROS;__STDC_LIMIT_MACROS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalUsingDirectories>%(AdditionalUsingDirectories)</AdditionalUsingDirectories>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>E:\Development\LLVM\llvm-3.9.0.bin\lib;E:\Development\LLVM\llvm-3.9.0.src\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -108,7 +108,7 @@
       </Command>
     </CustomBuildStep>
     <Lib>
-      <AdditionalLibraryDirectories>E:\Development\LLVM\llvm-3.9.0.bin\lib;E:\Development\LLVM\llvm-3.9.0.src\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

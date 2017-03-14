@@ -18,16 +18,7 @@ namespace DataDependence
 
 	Graph::~Graph()
 	{
-		for (auto v : this->Vertices)
-			delete v;
-		this->Vertices.clear();
-		for (auto v : this->Edges)
-			delete v;
-		this->Edges.clear();
-		for (auto v : this->Chains)
-			delete v;
-		this->Chains.clear();
-		delete this->Schedule;
+		//delete this->Schedule;
 	}
 
 	Vertex * Graph::FindVertex(std::string n)
@@ -127,7 +118,7 @@ namespace DataDependence
 
 	void Graph::CreateSchedule()
 	{
-		this->Schedule = new Scheduler(this->Vertices, this->Chains);
+		this->Schedule = new Scheduler(this->Vertices, this->Chains, this->Colours);
 		this->UnmarkEdges();
 		this->UnmarkChains();
 		this->Schedule->CreateSchedule();

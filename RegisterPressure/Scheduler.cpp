@@ -10,7 +10,7 @@ namespace DataDependence
 	{
 		this->initStartAndRelease();
 		this->sortStartAndRelease();
-		this->AvailableColours = (this->Start.size() == this->Release.size()) ? this->Start.size() : 2 * this->Start.size() - this->Release.size() - 1;
+		//this->AvailableColours = (this->Start.size() == this->Release.size()) ? this->Start.size() : 2 * this->Start.size() - this->Release.size() - 1;
 		this->CurrentColours = 0;
 		this->Live = std::vector<Vertex*>(this->AvailableColours, nullptr);
 		this->scheduleIndex = 0;
@@ -38,20 +38,18 @@ namespace DataDependence
 			[](Vertex* v1, Vertex* v2) { return v1->Line < v2->Line; });
 	}
 
-	Scheduler::Scheduler(std::vector<Vertex*>& v, std::vector<Chain*>& c) : Vertices(v), Chains(c)
+	Scheduler::Scheduler(std::vector<Vertex*>& v, std::vector<Chain*>& c, int cs) : Vertices(v), Chains(c)
 	{
 		this->Start = std::vector<Vertex*>();
 		this->Release = std::vector<Vertex*>();
-		this->Schedule = std::vector<Vertex*>(v.size(), nullptr);		
+		this->Schedule = std::vector<Vertex*>(v.size(), nullptr);
+		this->AvailableColours = cs;
 		this->init();		
 	}
 
 	Scheduler::~Scheduler()
 	{ 
-		this->Start.clear();
-		this->Release.clear();
-		this->Schedule.clear();
-		this->Live.clear();
+		
 	}
 
 	void Scheduler::CreateSchedule()
@@ -65,17 +63,20 @@ namespace DataDependence
 		this->Live[0] = root;
 		this->CurrentColours++;
 
-		Vertex* releaseNode, *iterate;
+		Vertex* releaseNode, *iterate, *lastIterate;
 		while((releaseNode = this->findReleaseNode()) != nullptr)
 		{
-			iterate = nullptr;
+			iterate = lastIterate = nullptr;
 			do
 			{
-				iterate = iterateSchedule(releaseNode);
-			} while (iterate != releaseNode);
-						
+				lastIterate = iterate;
+				iterate = iterateSchedule(releaseNode);				
+			} while (iterate != releaseNode && iterate != nullptr && iterate != lastIterate);
+			
 			this->Release.erase(std::remove(this->Release.begin(), this->Release.end(), releaseNode), this->Release.end());
 		}
+
+		
 	}
 
 	Chain* Scheduler::findUnmarkedChain()
@@ -109,6 +110,8 @@ namespace DataDependence
 		{
 			if (this->isVertexScheduled(e->Parent))
 				continue;
+			if (e->Parent == nullptr)
+				break;
 			return this->findBestChain(e->Parent);
 		}
 		return nullptr;
@@ -260,6 +263,9 @@ namespace DataDependence
 	Vertex* Scheduler::iterateSchedule(Vertex* releaseNode)
 	{
 		auto chain = this->findBestChain(releaseNode);
+		if (chain == nullptr)
+			return nullptr;
+
 		auto edge = chain->GetCurrentEdge();		
 		auto node = this->getUnscheduledVertex(edge);
 		auto overwrite = this->isIncomingOverwritable(node);
@@ -274,8 +280,9 @@ namespace DataDependence
 			node->RegisterName = "r" + std::to_string(f);
 			if (!overwrite)
 				this->CurrentColours++;
+			return node;
 		}
-		return node;
+		return nullptr;
 	}
 
 	Vertex * Scheduler::findReleaseNode()
@@ -302,7 +309,8 @@ namespace DataDependence
 					return node;
 				else
 					index++;
-		} while (this->Release.size() > 0 || index < this->Release.size());
+		} while (this->Release.size() > 0 && index < this->Release.size());
+		return nullptr;
 	}
 
 	Vertex* Scheduler::findFloatingParent(Vertex* v)

@@ -16,6 +16,7 @@ namespace DataDependence
 		std::vector<Chain*> Chains;
 		Scheduler* Schedule;
 		int LineIndex;
+		int Colours;
 
 		Graph();
 		~Graph();
@@ -31,5 +32,6 @@ namespace DataDependence
 		void UnmarkEdges();
 		void UnmarkChains();
 		void CreateSchedule();
+
 	};
 }

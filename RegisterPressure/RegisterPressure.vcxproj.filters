@@ -55,9 +55,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\LLVM IR\Mirror.bc">
-      <Filter>Resource Files</Filter>
-    </None>
     <None Include="Droplets.bc">
       <Filter>Resource Files</Filter>
     </None>
@@ -68,6 +65,9 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="Diamond.bc">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\Resources\Mirror.bc">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

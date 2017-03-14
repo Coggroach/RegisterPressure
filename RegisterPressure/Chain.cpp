@@ -13,7 +13,7 @@ namespace DataDependence
 
 	Chain::~Chain()
 	{ 
-		this->Edges.clear();
+		
 	}
 
 	bool Chain::IsValidChain()

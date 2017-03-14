@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\RegisterPressure\ReducedPressurePass.cpp">
+    <ClCompile Include="ReducedPressurePass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

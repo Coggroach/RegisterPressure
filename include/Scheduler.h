@@ -44,7 +44,7 @@ namespace DataDependence
 		int AvailableColours;
 		int CurrentColours;
 
-		Scheduler(std::vector<Vertex*>&, std::vector<Chain*>&);
+		Scheduler(std::vector<Vertex*>&, std::vector<Chain*>&, int);
 		~Scheduler();
 
 		void CreateSchedule();
