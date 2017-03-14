@@ -15,6 +15,8 @@ namespace DataDependence
 		static Graph Mirror();
 		static Graph Parallel();
 		static Graph Rombus();
+		static Graph Stretch();
+		static Graph Pyramid();
 	};
 }
 

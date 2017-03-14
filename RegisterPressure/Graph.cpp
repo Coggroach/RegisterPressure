@@ -122,5 +122,6 @@ namespace DataDependence
 		this->UnmarkEdges();
 		this->UnmarkChains();
 		this->Schedule->CreateSchedule();
+		this->Schedule->VerifySchedule();
 	}
 }

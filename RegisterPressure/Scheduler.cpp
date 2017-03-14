@@ -74,9 +74,19 @@ namespace DataDependence
 			} while (iterate != releaseNode && iterate != nullptr && iterate != lastIterate);
 			
 			this->Release.erase(std::remove(this->Release.begin(), this->Release.end(), releaseNode), this->Release.end());
-		}
+		}				
+	}
 
-		
+	void Scheduler::VerifySchedule()
+	{
+		if (std::any_of(this->Schedule.begin(), this->Schedule.end(), [](Vertex* v) { return v == nullptr; }))
+		{
+			for (auto v : this->Vertices)
+			{
+				if (!this->isVertexScheduled(v))
+					this->Schedule[this->scheduleIndex++] = v;
+			}
+		}
 	}
 
 	Chain* Scheduler::findUnmarkedChain()
@@ -92,6 +102,8 @@ namespace DataDependence
 		for (auto c : v->Chains)
 		{
 			auto curr = c->GetCurrentEdge();
+			if (curr == nullptr)
+				continue;
 			if(this->isIncomingScheduled(curr->Child))
 				return c;
 		}
@@ -108,11 +120,10 @@ namespace DataDependence
 		}
 		for (auto e : v->Incoming)
 		{
-			if (this->isVertexScheduled(e->Parent))
-				continue;
 			if (e->Parent == nullptr)
-				break;
-			return this->findBestChain(e->Parent);
+				continue;
+			if (!this->isVertexScheduled(e->Parent))
+				return this->findBestChain(e->Parent);						
 		}
 		return nullptr;
 	}

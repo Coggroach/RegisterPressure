@@ -48,5 +48,6 @@ namespace DataDependence
 		~Scheduler();
 
 		void CreateSchedule();
+		void VerifySchedule();
 	};
 }
