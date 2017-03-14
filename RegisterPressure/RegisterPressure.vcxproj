@@ -22,7 +22,6 @@
     <ClCompile Include="Chain.cpp" />
     <ClCompile Include="Graph.cpp" />
     <ClCompile Include="Edge.cpp" />
-    <ClCompile Include="ReducedPressurePass.cpp" />
     <ClCompile Include="Scheduler.cpp" />
     <ClCompile Include="Vertex.cpp" />
   </ItemGroup>
@@ -30,7 +29,6 @@
     <ClInclude Include="..\include\Chain.h" />
     <ClInclude Include="..\include\Graph.h" />
     <ClInclude Include="..\include\Edge.h" />
-    <ClInclude Include="..\include\ReducedPressurePass.h" />
     <ClInclude Include="..\include\Scheduler.h" />
     <ClInclude Include="..\include\Vertex.h" />
   </ItemGroup>

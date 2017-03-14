@@ -10,6 +10,7 @@ namespace DataDependence
 	{
 	public:
 		std::string Name;
+		std::string RegisterName;
 		std::vector<std::string> Operands;
 		std::vector<Edge*> Incoming;
 		std::vector<Edge*> Outgoing;

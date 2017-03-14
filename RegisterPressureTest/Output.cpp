@@ -19,3 +19,10 @@ std::string Output::ReadLine()
 	std::cin >> s;
 	return s;
 }
+
+void Output::WriteLine(std::string s, std::vector<DataDependence::Vertex*> v)
+{
+	for (auto i : v)
+		std::cout << i->Name << "(" << i->RegisterName << ") ";
+	std::cout << std::endl;
+}

@@ -16,6 +16,8 @@ namespace DataDependence
 
 		bool IsValidChain();
 		bool ContainsVertex(Vertex*);
+		Vertex* GetCurrentVertex();
+		Edge* GetCurrentEdge();
 		int GetChainLength();
 	};
 }

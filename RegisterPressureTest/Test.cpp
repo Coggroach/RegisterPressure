@@ -31,7 +31,7 @@ int main()
 	WriteLine("Vertices: " + std::to_string(graph->Vertices.size()));
 	WriteLine("Edge: " + std::to_string(graph->Edges.size()));
 	WriteLine("Chains: " + std::to_string(graph->Chains.size()));
-	WriteLine("Schedule: " + std::to_string(graph->Schedule->Schedule.size()));
+	WriteLine("Schedule: ",  graph->Schedule->Schedule);
 	WriteLine("Live: " + std::to_string(graph->Schedule->AvailableColours));
 
 	ReadLine();

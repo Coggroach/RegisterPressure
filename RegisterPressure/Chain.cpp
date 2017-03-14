@@ -32,6 +32,22 @@ namespace DataDependence
 		return std::any_of(this->Edges.begin(), this->Edges.end(), [v](Edge* e) { return e->Parent == v || e->Child == v; });
 	}
 
+	Vertex* Chain::GetCurrentVertex()
+	{
+		for (auto e : Edges)
+			if (!e->Marked)
+				return e->Child;
+		return nullptr;
+	}
+
+	Edge* Chain::GetCurrentEdge()
+	{
+		for (auto e : Edges)
+			if (!e->Marked)
+				return e;
+		return nullptr;
+	}
+
 	int Chain::GetChainLength()
 	{
 		auto total = 0;

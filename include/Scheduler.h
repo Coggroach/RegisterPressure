@@ -5,21 +5,34 @@ namespace DataDependence
 {
 	class Chain;
 	class Vertex;
+	class Edge;
 	class Scheduler
 	{
 	private:
 		void init();
+		void initStartAndRelease();
+		void sortStartAndRelease();
 
-		Chain* findUnmarkedChain();
-		std::vector<Vertex*> findAllSourceNodes();
-
-		bool areParentsSchedulable(Vertex*);
+		bool isIncomingSchedulable(Vertex*);
+		bool isIncomingScheduled(Vertex*);
+		bool isChildOfSchedule(Vertex*);
+		bool isIncomingAllNull(Vertex*);
 		bool isVertexScheduled(Vertex*);
 		bool isVertexSchedulable(Vertex*);
-		bool isParentOverwritable(Vertex*);
-		bool isLiveMarked(Vertex*);
+		bool isIncomingOverwritable(Vertex*);
+		bool isIncomingSafe(Vertex*);
 		
+		Vertex* iterateSchedule(Vertex*);
 		Vertex* findReleaseNode();
+		Vertex* findFloatingParent(Vertex*);
+		Vertex* getUnscheduledVertex(Edge*);
+		Chain* findUnmarkedChain();
+		Chain* findBestChain(Vertex*);
+		int findOverwritable(Edge*);
+		int findNullLive();
+		std::vector<Vertex*> findAllSourceNodes();
+
+		int scheduleIndex;
 
 	public:
 		std::vector<Vertex*>& Vertices;
