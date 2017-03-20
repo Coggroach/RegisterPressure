@@ -116,11 +116,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="GraphFactory.cpp" />
     <ClCompile Include="Graphs.cpp" />
     <ClCompile Include="Output.cpp" />
     <ClCompile Include="Test.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GraphFactory.h" />
     <ClInclude Include="Graphs.h" />
     <ClInclude Include="Output.h" />
   </ItemGroup>

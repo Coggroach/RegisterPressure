@@ -15,4 +15,4 @@ namespace DataDependence
 		Edge(Vertex*, Vertex*, int);
 		~Edge();
 	};
-}
+} 

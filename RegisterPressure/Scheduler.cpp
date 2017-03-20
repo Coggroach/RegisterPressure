@@ -296,7 +296,7 @@ namespace DataDependence
 		return nullptr;
 	}
 
-	Vertex * Scheduler::findReleaseNode()
+	Vertex* Scheduler::findReleaseNode()
 	{
 		if (this->Release.size() == 0)
 			return nullptr;
