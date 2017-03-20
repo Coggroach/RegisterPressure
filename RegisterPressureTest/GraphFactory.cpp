@@ -1,12 +1,12 @@
 #include "GraphFactory.h"
 
-
-
-GraphFactory::GraphFactory()
+namespace DataDependence
 {
-}
+	GraphFactory::GraphFactory()
+	{
+	}
 
-
-GraphFactory::~GraphFactory()
-{
+	GraphFactory::~GraphFactory()
+	{
+	}
 }
