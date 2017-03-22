@@ -23,6 +23,7 @@
     <ClCompile Include="Graph.cpp" />
     <ClCompile Include="Edge.cpp" />
     <ClCompile Include="Scheduler.cpp" />
+    <ClCompile Include="Validator.cpp" />
     <ClCompile Include="Vertex.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -30,6 +31,7 @@
     <ClInclude Include="..\include\Graph.h" />
     <ClInclude Include="..\include\Edge.h" />
     <ClInclude Include="..\include\Scheduler.h" />
+    <ClInclude Include="..\include\Validator.h" />
     <ClInclude Include="..\include\Vertex.h" />
   </ItemGroup>
   <ItemGroup>

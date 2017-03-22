@@ -10,6 +10,7 @@ namespace Output
 	void WriteLine(std::vector<std::string>);
 	std::string ReadLine();
 	void WriteLine(std::string, std::vector<DataDependence::Vertex*>);
-	void WriteLine(std::string, DataDependence::Graph);
+	void WriteLine(std::string, DataDependence::Graph*);
+	void WriteLine(std::string, DataDependence::Graph*);
 };
 

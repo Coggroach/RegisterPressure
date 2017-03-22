@@ -8,10 +8,10 @@ using namespace Output;
 int main()
 {	
 	WriteLine("Diamond", Graphs::Diamond());	
-	WriteLine("Mirror", Graphs::Mirror());
+	//WriteLine("Mirror", Graphs::Mirror());
 	WriteLine("Parallel", Graphs::Parallel());
 	WriteLine("Rombus", Graphs::Rombus());
-	WriteLine("Droplets", Graphs::Droplets());
+	//WriteLine("Droplets", Graphs::Droplets());
 	WriteLine("Stretch", Graphs::Stretch());
 	WriteLine("Pyramid", Graphs::Pyramid());
 

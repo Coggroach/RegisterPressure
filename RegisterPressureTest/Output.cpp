@@ -28,15 +28,15 @@ void Output::WriteLine(std::string s, std::vector<DataDependence::Vertex*> v)
 			std::cout << i->Name << "(" << i->RegisterName << ") " << std::endl;
 }
 
-void Output::WriteLine(std::string s, DataDependence::Graph graph)
+void Output::WriteLine(std::string s, DataDependence::Graph *graph)
 {
 	WriteLine(s);
 	WriteLine("==============");
-	WriteLine("Vertices: " + std::to_string(graph.Vertices.size()));
-	WriteLine("Edge: " + std::to_string(graph.Edges.size()));
-	WriteLine("Chains: " + std::to_string(graph.Chains.size()));
-	WriteLine("MaxLive: " + std::to_string(graph.Schedule->AvailableColours));
-	WriteLine("Schedule: ", graph.Schedule->Schedule);
+	WriteLine("Vertices: " + std::to_string(graph->Vertices.size()));
+	WriteLine("Edge: " + std::to_string(graph->Edges.size()));
+	WriteLine("Chains: " + std::to_string(graph->Chains.size()));
+	WriteLine("MaxLive: " + std::to_string(graph->Schedule->AvailableColours));
+	WriteLine("Schedule: ", graph->Schedule->Schedule);
 	WriteLine("==============");
 }
 

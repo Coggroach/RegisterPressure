@@ -7,13 +7,13 @@ namespace DataDependence
 	{
 	public:
 
-		static Graph Diamond();
-		static Graph Droplets();
-		static Graph Mirror();
-		static Graph Parallel();
-		static Graph Rombus();
-		static Graph Stretch();
-		static Graph Pyramid();
+		static Graph* Diamond();
+		static Graph* Droplets();
+		static Graph* Mirror();
+		static Graph* Parallel();
+		static Graph* Rombus();
+		static Graph* Stretch();
+		static Graph* Pyramid();
 	};
 }
 
