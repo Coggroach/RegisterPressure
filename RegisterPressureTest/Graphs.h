@@ -1,5 +1,4 @@
 #pragma once
-#include "Graph.h"
 
 namespace DataDependence
 {
@@ -7,8 +6,6 @@ namespace DataDependence
 	class Graphs
 	{
 	public:
-		Graphs();
-		~Graphs();
 
 		static Graph Diamond();
 		static Graph Droplets();
