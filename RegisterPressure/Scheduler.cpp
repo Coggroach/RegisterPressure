@@ -55,6 +55,8 @@ namespace DataDependence
 	void Scheduler::CreateSchedule()
 	{		
 		auto sourceNodes = this->findAllSourceNodes();
+		if (sourceNodes.empty())
+			return;
 		auto root = sourceNodes[0];
 
 		//Pick Starting Point root

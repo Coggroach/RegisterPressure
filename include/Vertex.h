@@ -15,6 +15,7 @@ namespace DataDependence
 		std::vector<Edge*> Incoming;
 		std::vector<Edge*> Outgoing;
 		std::vector<Chain*> Chains;
+		//Instruction* InstructionPointer;
 		int Delay;
 		int Line;
 

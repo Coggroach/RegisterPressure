@@ -60,21 +60,4 @@
       <Filter>Header Files\DataDependence</Filter>
     </ClInclude>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Droplets.bc">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="Rombus.bc">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="Parallel.bc">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="Diamond.bc">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="..\Resources\Mirror.bc">
-      <Filter>Resource Files</Filter>
-    </None>
-  </ItemGroup>
 </Project>

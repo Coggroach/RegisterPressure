@@ -10,8 +10,9 @@ using namespace llvm;
 class ReducedPressurePass : public BasicBlockPass
 {
 private:
-	std::vector<std::string> getOperandNames(Instruction*);
+	std::vector<std::string> getOperandNames(const Instruction&);
 	bool processForGraph(BasicBlock &bb);
+	bool processReorder(BasicBlock &);
 
 public:
 	DataDependence::Graph* Graph;

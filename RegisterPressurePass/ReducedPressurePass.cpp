@@ -1,18 +1,20 @@
 #include "ReducedPressurePass.h"
 #include "Vertex.h"
 #include "Edge.h"
+#include "Scheduler.h"
+#include "llvm/Transforms/Utils/BasicBlockUtils.h"
 
-static RegisterPass<ReducedPressurePass> X("ReducedPressurePass", "Reduced Register Pressure Pass", false, false);
+static RegisterPass<ReducedPressurePass> X("ReducedPressurePass", "Reduced Register Pressure Pass", true, false);
 char ReducedPressurePass::ID = 0;
 
-std::vector<std::string> ReducedPressurePass::getOperandNames(Instruction* instruction)
+std::vector<std::string> ReducedPressurePass::getOperandNames(const Instruction& instruction)
 {
 	auto results = std::vector<std::string>();
 
-	auto num = instruction->getNumOperands();
+	auto num = instruction.getNumOperands();
 	for (auto i = 0; i < num; i++)
 	{
-		auto name = instruction->getOperand(i)->getName().str();
+		auto name = instruction.getOperand(i)->getName().str();
 		if (name.empty())
 			continue;
 		if (std::find(results.begin(), results.end(), name) == results.end())
@@ -25,10 +27,9 @@ bool ReducedPressurePass::processForGraph(BasicBlock & bb)
 {
 	this->Graph = new DataDependence::Graph();
 
-	for (BasicBlock::iterator bbi = bb.begin(); bbi != bb.end(); ++bbi)
+	for (auto& instruction : bb)
 	{
-		auto instruction = bbi.getNodePtrUnchecked();
-		auto name = instruction->getName().str();
+		auto name = instruction.getName().str();
 
 		if (name.empty()) continue;
 
@@ -37,19 +38,49 @@ bool ReducedPressurePass::processForGraph(BasicBlock & bb)
 	}
 
 	this->Graph->CreateMinimumChains();
+	this->Graph->LinkVerticesToChains();
 	this->Graph->CreateSchedule();
 	return false;
 }
 
-ReducedPressurePass::ReducedPressurePass() : BasicBlockPass(ID)
+bool ReducedPressurePass::processReorder(BasicBlock &bb)
 {
+	auto& sch = this->Graph->Schedule->Schedule;
+	if (sch.size() == 0)
+		return false;	
+
+	auto ins = std::vector<Instruction*>();
+	for (auto s : sch)
+	{
+		for (auto& instruction : bb)
+		{
+			if (s->Name == instruction.getName().str())
+			{
+				auto clone = instruction.clone();
+				auto name = instruction.getName();
+				clone->setName(s->RegisterName + "_");
+				ins.push_back(clone);
+				break;
+			}
+		}
+	}
+
+	int i = 0;
+	for (auto bbi = bb.begin(), bbe = bb.end(); bbi != bbe; ++bbi)
+	{
+		if (bbi->getName().empty())
+			continue;
+		ReplaceInstWithInst(bb.getInstList(), bbi, ins[i++]);
+	}
+	errs() << bb;
+ 	return true;
 }
 
-ReducedPressurePass::~ReducedPressurePass()
-{
-}
+ReducedPressurePass::ReducedPressurePass() : BasicBlockPass(ID) { }
+
+ReducedPressurePass::~ReducedPressurePass() { }
 
 bool ReducedPressurePass::runOnBasicBlock(BasicBlock & bb)
 {
-	return processForGraph(bb);
+	return processForGraph(bb) || processReorder(bb);
 }

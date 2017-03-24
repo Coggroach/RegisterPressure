@@ -34,13 +34,6 @@
     <ClInclude Include="..\include\Validator.h" />
     <ClInclude Include="..\include\Vertex.h" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="..\Resources\Mirror.bc" />
-    <None Include="Diamond.bc" />
-    <None Include="Droplets.bc" />
-    <None Include="Parallel.bc" />
-    <None Include="Rombus.bc" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{19AE3B3D-BB41-4E72-BDA8-E6E567C1FA17}</ProjectGuid>
     <RootNamespace>RegisterPressure</RootNamespace>

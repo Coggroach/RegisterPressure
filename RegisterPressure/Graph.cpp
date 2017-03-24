@@ -14,12 +14,10 @@ namespace DataDependence
 		this->Edges = std::vector<Edge*>();
 		this->Chains = std::vector<Chain*>();
 		this->LineIndex = 0;
+		this->Colours = 3;
 	}
 
-	Graph::~Graph()
-	{
-		//delete this->Schedule;
-	}
+	Graph::~Graph()	{ }
 
 	Vertex * Graph::FindVertex(std::string n)
 	{

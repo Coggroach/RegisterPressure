@@ -1,11 +1,11 @@
 define i32 @foo(i32* %in, i32* %in2) {
-	%s1 = load i32, i32* %in
+	%s1 = load i32, i32* %in	
 	%s2 = load i32, i32* %in2
 	%s3 = add i32 %s1, 2
 	%s4 = add i32 %s1, %s2
 	%s5 = mul i32 %s2, 5
 	%s6 = add i32 %s3, 1
-	%s7 = sub i32 %s3, 1
+	%s7 = sub i32 %s3, 1	
 	%s8 = add i32 %s4, %s5
 	%s9 = add i32 %s5, 10
 	%s10 = add i32 %s6, %s7
