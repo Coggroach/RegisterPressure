@@ -22,6 +22,7 @@
     <ClCompile Include="Chain.cpp" />
     <ClCompile Include="Graph.cpp" />
     <ClCompile Include="Edge.cpp" />
+    <ClCompile Include="RandomGraph.cpp" />
     <ClCompile Include="Scheduler.cpp" />
     <ClCompile Include="Validator.cpp" />
     <ClCompile Include="Vertex.cpp" />
@@ -30,6 +31,7 @@
     <ClInclude Include="..\include\Chain.h" />
     <ClInclude Include="..\include\Graph.h" />
     <ClInclude Include="..\include\Edge.h" />
+    <ClInclude Include="..\include\RandomGraph.h" />
     <ClInclude Include="..\include\Scheduler.h" />
     <ClInclude Include="..\include\Validator.h" />
     <ClInclude Include="..\include\Vertex.h" />

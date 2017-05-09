@@ -7,7 +7,7 @@ namespace DataDependence
 	{
 	private:
 		bool DoesIncomingEqualOutgoing(Graph*);
-		bool DoesIncomingEqualVertex(Graph*);
+		bool DoesIncomingEqualVertex(Graph*);		
 	public:
 		Validator();
 		~Validator();

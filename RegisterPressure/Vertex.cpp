@@ -10,6 +10,8 @@ namespace DataDependence
 
 	Vertex::Vertex(std::string n) : Vertex(n, std::vector<std::string>(), 0) { }
 
+	Vertex::Vertex(std::string n, int l) : Vertex(n, std::vector<std::string>(), l) { }
+
 	Vertex::Vertex(std::string n, std::vector<std::string> v) : Vertex(n, v, 0) { }
 
 	Vertex::Vertex(std::string n, std::vector<std::string> v, int l)

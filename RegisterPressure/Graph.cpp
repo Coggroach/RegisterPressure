@@ -119,7 +119,7 @@ namespace DataDependence
 		this->Schedule = new Scheduler(this->Vertices, this->Chains, this->Colours);
 		this->UnmarkEdges();
 		this->UnmarkChains();
+		this->Schedule->CalculatePreviousColours();
 		this->Schedule->CreateSchedule();
-		this->Schedule->VerifySchedule();
 	}
 }

@@ -21,6 +21,7 @@ namespace DataDependence
 
 		Vertex();
 		Vertex(std::string);
+		Vertex(std::string, int);
 		Vertex(std::string, std::vector<std::string>);
 		Vertex(std::string, std::vector<std::string>, int);
 		~Vertex();

@@ -39,6 +39,9 @@
     <ClCompile Include="Validator.cpp">
       <Filter>Source Files\DataDependence</Filter>
     </ClCompile>
+    <ClCompile Include="RandomGraph.cpp">
+      <Filter>Source Files\DataDependence</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\Chain.h">
@@ -57,6 +60,9 @@
       <Filter>Header Files\DataDependence</Filter>
     </ClInclude>
     <ClInclude Include="..\include\Validator.h">
+      <Filter>Header Files\DataDependence</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\RandomGraph.h">
       <Filter>Header Files\DataDependence</Filter>
     </ClInclude>
   </ItemGroup>

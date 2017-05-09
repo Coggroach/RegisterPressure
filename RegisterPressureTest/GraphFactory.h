@@ -10,7 +10,7 @@ namespace DataDependence
 	private:
 		Graph* g;
 	public:
-		GraphFactory(int c);
+		GraphFactory();
 		~GraphFactory();
 
 		GraphFactory* Add(std::string name, std::vector<std::string> operands);

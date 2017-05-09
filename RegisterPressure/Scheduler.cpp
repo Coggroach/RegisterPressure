@@ -12,6 +12,7 @@ namespace DataDependence
 		this->sortStartAndRelease();
 		//this->AvailableColours = (this->Start.size() == this->Release.size()) ? this->Start.size() : 2 * this->Start.size() - this->Release.size() - 1;
 		this->CurrentColours = 0;
+		this->PreviousColours = 0;
 		this->Live = std::vector<Vertex*>(this->AvailableColours, nullptr);
 		this->scheduleIndex = 0;
 	}
@@ -52,6 +53,26 @@ namespace DataDependence
 		
 	}
 
+	void Scheduler::CalculatePreviousColours()
+	{
+		for (auto v : this->Vertices)
+		{
+			auto overwrite = this->isIncomingOverwritable(v);
+
+			if (!overwrite)
+				PreviousColours++;
+			
+			for (auto e : v->Incoming)
+				e->Marked = true;
+		}
+
+		for (auto v : this->Vertices)
+		{
+			for (auto e : v->Incoming)
+				e->Marked = e->Parent == nullptr ? true : false;
+		}
+	}
+
 	void Scheduler::CreateSchedule()
 	{		
 		auto sourceNodes = this->findAllSourceNodes();
@@ -76,18 +97,20 @@ namespace DataDependence
 			} while (iterate != releaseNode && iterate != nullptr && iterate != lastIterate);
 			
 			this->Release.erase(std::remove(this->Release.begin(), this->Release.end(), releaseNode), this->Release.end());
-		}				
+		}
+		this->VerifySchedule();
 	}
 
 	void Scheduler::VerifySchedule()
 	{
 		if (std::any_of(this->Schedule.begin(), this->Schedule.end(), [](Vertex* v) { return v == nullptr; }))
-		{
-			for (auto v : this->Vertices)
-			{
-				if (!this->isVertexScheduled(v))
-					this->Schedule[this->scheduleIndex++] = v;
-			}
+		{	
+			this->AvailableColours++;
+			
+			if (this->AvailableColours >= this->PreviousColours)
+				this->Schedule = this->Vertices;
+			else
+				this->CreateSchedule();
 		}
 	}
 
@@ -138,6 +161,19 @@ namespace DataDependence
 			if (l == nullptr)
 				continue;
 			if (std::all_of(l->Outgoing.begin(), l->Outgoing.end(), [o](Edge* pe) { return o == pe || pe->Marked; }))
+				return i;
+		}
+		return -1;
+	}
+
+	int Scheduler::findOverwritable()
+	{
+		for (int i = 0; i < this->Live.size(); i++)
+		{
+			auto l = this->Live[i];
+			if (l == nullptr)
+				continue;
+			if (std::all_of(l->Outgoing.begin(), l->Outgoing.end(), [](Edge* pe) { return pe->Marked; }))
 				return i;
 		}
 		return -1;
@@ -323,7 +359,7 @@ namespace DataDependence
 				else
 					index++;
 		} while (this->Release.size() > 0 && index < this->Release.size());
-		return nullptr;
+		return this->Release[0];
 	}
 
 	Vertex* Scheduler::findFloatingParent(Vertex* v)

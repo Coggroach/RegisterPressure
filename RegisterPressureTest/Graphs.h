@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 
 namespace DataDependence
 {
@@ -14,6 +15,8 @@ namespace DataDependence
 		static Graph* Rombus();
 		static Graph* Stretch();
 		static Graph* Pyramid();
+
+		static std::vector<Graph*> Generate(int);
 	};
 }
 

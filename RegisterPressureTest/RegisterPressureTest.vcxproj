@@ -119,12 +119,14 @@
     <ClCompile Include="GraphFactory.cpp" />
     <ClCompile Include="Graphs.cpp" />
     <ClCompile Include="Output.cpp" />
+    <ClCompile Include="RandomGraphFactory.cpp" />
     <ClCompile Include="Test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GraphFactory.h" />
     <ClInclude Include="Graphs.h" />
     <ClInclude Include="Output.h" />
+    <ClInclude Include="RandomGraphFactory.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

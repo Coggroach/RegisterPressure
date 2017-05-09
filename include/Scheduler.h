@@ -22,6 +22,7 @@ namespace DataDependence
 		bool isIncomingOverwritable(Vertex*);
 		bool isIncomingSafe(Vertex*);
 		
+		
 		Vertex* iterateSchedule(Vertex*);
 		Vertex* findReleaseNode();
 		Vertex* findFloatingParent(Vertex*);
@@ -29,6 +30,7 @@ namespace DataDependence
 		Chain* findUnmarkedChain();
 		Chain* findBestChain(Vertex*);
 		int findOverwritable(Edge*);
+		int findOverwritable();
 		int findNullLive();
 		std::vector<Vertex*> findAllSourceNodes();
 
@@ -43,10 +45,12 @@ namespace DataDependence
 		std::vector<Vertex*> Live;
 		int AvailableColours;
 		int CurrentColours;
+		int PreviousColours;
 
 		Scheduler(std::vector<Vertex*>&, std::vector<Chain*>&, int);
 		~Scheduler();
-
+		
+		void CalculatePreviousColours();
 		void CreateSchedule();
 		void VerifySchedule();
 	};

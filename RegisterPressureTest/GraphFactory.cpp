@@ -3,10 +3,9 @@
 
 namespace DataDependence
 {
-	GraphFactory::GraphFactory(int c)
+	GraphFactory::GraphFactory()
 	{
 		this->g = new Graph();
-		this->g->Colours = c;
 	}
 
 	GraphFactory::~GraphFactory() { }

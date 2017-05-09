@@ -1,12 +1,14 @@
 #include "Graphs.h"
 #include "Graph.h"
+#include "RandomGraph.h"
 #include "GraphFactory.h"
+#include "RandomGraphFactory.h"
 
 namespace DataDependence 
 {
 	Graph* DataDependence::Graphs::Diamond()
 	{
-		auto gf = new GraphFactory(3);
+		auto gf = new GraphFactory();
 		auto g = gf->
 			Add("s1", { "in" })->
 			Add("s2", { "in2" })->
@@ -27,7 +29,7 @@ namespace DataDependence
 
 	Graph* DataDependence::Graphs::Droplets()
 	{
-		auto gf = new GraphFactory(2);
+		auto gf = new GraphFactory();
 		auto g = gf->
 			Add("s1", { "in" })->
 			Add("s2", { "in2" })->
@@ -43,7 +45,7 @@ namespace DataDependence
 
 	Graph* Graphs::Mirror()
 	{
-		auto gf = new GraphFactory(3);
+		auto gf = new GraphFactory();
 		auto g = gf->
 			Add("s1", { "in" })->
 			Add("s2", { "s1" })->
@@ -58,7 +60,7 @@ namespace DataDependence
 
 	Graph* Graphs::Parallel()
 	{
-		auto gf = new GraphFactory(3);
+		auto gf = new GraphFactory();
 		auto g = gf->
 			Add("s1", { "in" })->
 			Add("s2", { "in2" })->
@@ -74,7 +76,7 @@ namespace DataDependence
 
 	Graph* Graphs::Rombus()
 	{
-		auto gf = new GraphFactory(3);
+		auto gf = new GraphFactory();
 		auto g = gf->
 			Add("s1", { "in" })->
 			Add("s2", { "s1" })->
@@ -91,7 +93,7 @@ namespace DataDependence
 
 	Graph* Graphs::Stretch()
 	{
-		auto gf = new GraphFactory(3);
+		auto gf = new GraphFactory();
 		auto g = gf->
 			Add("s1", { "in" })->
 			Add("s2", { "s1" })->
@@ -111,7 +113,7 @@ namespace DataDependence
 
 	Graph* Graphs::Pyramid()
 	{
-		auto gf = new GraphFactory(4);
+		auto gf = new GraphFactory();
 		auto g = gf->
 			Add("s1", { "in" })->
 			Add("s2", { "in2" })->
@@ -124,6 +126,17 @@ namespace DataDependence
 			Add("s9", { "s6", "s7" })->
 			Add("s10", { "s8", "s9" })->Build();
 		return g;
+	}
+
+	std::vector<Graph*> Graphs::Generate(int c)
+	{
+		auto gf = new RandomGraphFactory();
+		auto gs = std::vector<Graph*>();
+
+		for(auto i = 0; i < c; i++)
+			gs.push_back(gf->Build());
+
+		return gs;
 	}
 }
 

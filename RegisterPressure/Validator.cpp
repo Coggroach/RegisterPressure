@@ -31,6 +31,6 @@ namespace DataDependence
 
 	bool Validator::IsValid(Graph* g)
 	{
-		return !DoesIncomingEqualVertex(g) && !DoesIncomingEqualOutgoing(g);
+		return g->Vertices.size() > 0 && !DoesIncomingEqualVertex(g) && !DoesIncomingEqualOutgoing(g);
 	}
 }
