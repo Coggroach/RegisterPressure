@@ -16,7 +16,7 @@ namespace DataDependence
 		static Graph* Stretch();
 		static Graph* Pyramid();
 
-		static std::vector<Graph*> Generate(int);
+		static std::vector<Graph*> Generate(int, int);
 	};
 }
 

@@ -128,13 +128,13 @@ namespace DataDependence
 		return g;
 	}
 
-	std::vector<Graph*> Graphs::Generate(int c)
+	std::vector<Graph*> Graphs::Generate(int c, int s)
 	{
 		auto gf = new RandomGraphFactory();
 		auto gs = std::vector<Graph*>();
 
 		for(auto i = 0; i < c; i++)
-			gs.push_back(gf->Build());
+			gs.push_back(gf->Build(s));
 
 		return gs;
 	}

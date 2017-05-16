@@ -2,6 +2,7 @@
 #include "Scheduler.h"
 #include <iostream>
 #include <fstream>
+#include <algorithm>
 
 void Output::WriteLine(std::string s)
 {
@@ -48,23 +49,41 @@ void Output::WriteFile(std::string s, DataDependence::Graph* g)
 	WriteFile(s, std::vector<DataDependence::Graph*>{ g });
 }
 
+std::string TrackSumToString(int i, long& total)
+{
+	total += i;
+	return std::to_string(i);
+}
+
 void Output::WriteFile(std::string s, std::vector<DataDependence::Graph*> gs)
 {
 	std::ofstream o;
 	o.open(s + ".csv");
-	o << "Vertices,Edges,Chains,MaxColours,PreviousColours,Schedule" << std::endl;
+	o << "Vertices,Edges,Chains,MaxColours,UsedColours,PreviousColours,Gain,Schedule" << std::endl;
+	long vs, es, cs, mc, uc, pc, ga;
+	vs = es = cs = mc = uc = pc = ga = 0;
 	for (auto g : gs) 
 	{
-		o << std::to_string(g->Vertices.size()) << ",";
-		o << std::to_string(g->Edges.size()) << ",";
-		o << std::to_string(g->Chains.size()) << ",";
-		o << std::to_string(g->Schedule->AvailableColours) << ",";
-		o << std::to_string(g->Schedule->PreviousColours) << ",";
+		o << TrackSumToString(g->Vertices.size(), vs) << ",";
+		o << TrackSumToString(g->Edges.size(), es) << ",";
+		o << TrackSumToString(g->Chains.size(), cs) << ",";
+		o << TrackSumToString(g->Schedule->AvailableColours, mc) << ",";
+		auto curr = std::min(g->Schedule->AvailableColours, g->Schedule->PreviousColours);
+		o << TrackSumToString(curr, uc) << ",";
+		o << TrackSumToString(g->Schedule->PreviousColours, pc) << ",";
+		o << TrackSumToString(g->Schedule->PreviousColours - curr, ga) << ",";
 		for (auto i : g->Schedule->Schedule)
 			if (i != nullptr)
 				o << (i->Name + ":");
 		o << std::endl;
 	}
+	o << vs << ",";
+	o << es << ",";
+	o << cs << ",";
+	o << mc << ",";
+	o << uc << ",";
+	o << pc << ",";
+	o << ga << ",";
 	o.close();
 }
 

@@ -14,7 +14,7 @@ namespace DataDependence
 		RandomGraphFactory();
 		~RandomGraphFactory();
 				
-		RandomGraph* Build();
+		RandomGraph* Build(int);
 	};
 }
 

@@ -11,16 +11,16 @@ namespace DataDependence
 
 	RandomGraphFactory::~RandomGraphFactory() {	}
 
-	RandomGraph * RandomGraphFactory::Build()
+	RandomGraph* RandomGraphFactory::Build(int i)
 	{
-		auto g = new RandomGraph(30);
+		auto g = new RandomGraph(i);
 		g->Generate();
 		g->Trim();
 
 		if (!this->validator->IsValid(g))
 		{
 			delete g;
-			return Build();
+			return Build(i);
 		}
 		g->CreateMinimumChains();
 		g->LinkVerticesToChains();

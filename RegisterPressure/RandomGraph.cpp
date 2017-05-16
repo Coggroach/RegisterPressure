@@ -21,9 +21,9 @@ namespace DataDependence
 		for (auto i = 0; i < count; i++)
 			vertices.push_back(new Vertex("s" + std::to_string(i), i));
 
-		for (auto i = 0; i < count; i++)
+		for (auto i = 1; i < count; i++)
 		{
-			auto numOfOperands = std::rand() % 2;
+			auto numOfOperands = std::rand() % std::min(3, i);
 
 			for (auto j = 0; j < numOfOperands; j++)
 			{
@@ -35,6 +35,9 @@ namespace DataDependence
 
 		for (auto i = 0; i < count; i++)
 			this->AddVertex(vertices[i]->Name, vertices[i]->Operands);
+
+		for (auto v : vertices)
+			delete v;
 	}
 
 	void RandomGraph::Trim()
